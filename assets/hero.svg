@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Assignment Check</title>
+  <desc id="desc">提交前，按老师要求认真检查一遍作业。Teacher requirements to student evidence to verification result.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="0.55" stop-color="#0b1628"/>
+      <stop offset="1" stop-color="#07101c"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#68d7ff"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="520" rx="28" fill="url(#bg)"/>
+  <g opacity=".12" stroke="#4c8bdc">
+    <path d="M0 78H1200M0 156H1200M0 234H1200M0 312H1200M0 390H1200M0 468H1200"/>
+    <path d="M100 0V520M200 0V520M300 0V520M400 0V520M500 0V520M600 0V520M700 0V520M800 0V520M900 0V520M1000 0V520M1100 0V520"/>
+  </g>
+
+  <text x="600" y="50" text-anchor="middle" fill="#8fa9c8" font-size="13" letter-spacing="4" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif">OPEN SOURCE · AGENT SKILL · MIT</text>
+  <text x="600" y="118" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="62" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif">Assignment <tspan fill="url(#blue)">Check</tspan></text>
+  <text x="600" y="156" text-anchor="middle" fill="#dbeafe" font-weight="700" font-size="25" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif">提交前，按老师要求认真检查一遍作业</text>
+  <text x="600" y="184" text-anchor="middle" fill="#93a8c3" font-size="17" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif">Check your assignment before you submit it.</text>
+
+  <!-- Inputs -->
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif">
+    <rect x="54" y="235" width="255" height="62" rx="14" fill="#101f34" stroke="#2f527d"/>
+    <circle cx="84" cy="266" r="12" fill="#193b66"/><path d="M79 259h10v14H79zM81 257h6l3 3" fill="none" stroke="#6cc8ff" stroke-width="2"/>
+    <text x="108" y="259" fill="#fff" font-size="16" font-weight="700">Assignment brief</text>
+    <text x="108" y="280" fill="#8fa9c8" font-size="12">老师要求 / Instructions</text>
+
+    <rect x="54" y="312" width="255" height="62" rx="14" fill="#101f34" stroke="#2f527d"/>
+    <circle cx="84" cy="343" r="12" fill="#193b66"/><path d="M78 338h12M78 343h12M78 348h8" stroke="#6cc8ff" stroke-width="2" stroke-linecap="round"/>
+    <text x="108" y="336" fill="#fff" font-size="16" font-weight="700">Rubric</text>
+    <text x="108" y="357" fill="#8fa9c8" font-size="12">评分标准 / Criteria</text>
+
+    <rect x="54" y="389" width="255" height="62" rx="14" fill="#101f34" stroke="#2f527d"/>
+    <circle cx="84" cy="420" r="12" fill="#193b66"/><path d="M84 413v14M79 418l5-5 5 5" fill="none" stroke="#6cc8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="108" y="413" fill="#fff" font-size="16" font-weight="700">Your submission</text>
+    <text x="108" y="434" fill="#8fa9c8" font-size="12">你的作业 / Your work</text>
+  </g>
+
+  <!-- Center engine -->
+  <g filter="url(#glow)" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif">
+    <rect x="410" y="286" width="305" height="128" rx="22" fill="#0d1c30" stroke="#58b9ff" stroke-width="2"/>
+    <circle cx="562" cy="326" r="22" fill="#15345a" stroke="#66d0ff"/>
+    <path d="M552 326h20M562 316v20" stroke="#89dcff" stroke-width="3" stroke-linecap="round"/>
+    <text x="562" y="372" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="800">Assignment Check</text>
+    <text x="562" y="394" text-anchor="middle" fill="#8fa9c8" font-size="11" letter-spacing="2">MAP · VERIFY · PRIORITIZE</text>
+  </g>
+
+  <!-- connectors -->
+  <g fill="none" stroke="#4ea8ff" stroke-width="3" stroke-linecap="round">
+    <path d="M309 266H350Q375 266 375 305V331Q375 350 410 350"/>
+    <path d="M309 343H410"/>
+    <path d="M309 420H350Q375 420 375 392V371Q375 350 410 350"/>
+    <path d="M715 350H775"/>
+  </g>
+  <path d="M765 340l12 10-12 10" fill="none" stroke="#4ea8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Result -->
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif">
+    <rect x="796" y="232" width="350" height="224" rx="18" fill="#101b2b" stroke="#385b82"/>
+    <rect x="818" y="251" width="306" height="54" rx="12" fill="#2a1620" stroke="#d25b73"/>
+    <text x="838" y="276" fill="#ff8ea2" font-size="20" font-weight="800">NEEDS REVISION</text>
+    <text x="838" y="295" fill="#c7d2e3" font-size="12">你的提交尚未完全满足老师要求</text>
+
+    <text x="818" y="337" fill="#ffffff" font-size="16" font-weight="800">最该先改 / Top fixes</text>
+
+    <circle cx="835" cy="365" r="13" fill="#18395f"/><text x="835" y="370" text-anchor="middle" fill="#8edbff" font-size="12" font-weight="700">1</text>
+    <text x="860" y="369" fill="#dbeafe" font-size="13">没有真正比较 A 和 B</text>
+
+    <circle cx="835" cy="397" r="13" fill="#18395f"/><text x="835" y="402" text-anchor="middle" fill="#8edbff" font-size="12" font-weight="700">2</text>
+    <text x="860" y="401" fill="#dbeafe" font-size="13">引用存在，但不支持当前结论</text>
+
+    <circle cx="835" cy="429" r="13" fill="#18395f"/><text x="835" y="434" text-anchor="middle" fill="#8edbff" font-size="12" font-weight="700">3</text>
+    <text x="860" y="433" fill="#dbeafe" font-size="13">代码缺少老师要求的错误处理</text>
+  </g>
+
+  <!-- bottom flow -->
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif" font-size="13" font-weight="700">
+    <text x="335" y="490" text-anchor="middle" fill="#9cc9ee">老师要求 · Teacher requirements</text>
+    <text x="600" y="490" text-anchor="middle" fill="#9cc9ee">学生证据 · Student evidence</text>
+    <text x="865" y="490" text-anchor="middle" fill="#9cc9ee">验证结果 · Verification result</text>
+    <path d="M445 485H490" stroke="#4ea8ff" stroke-width="2"/><path d="M480 478l10 7-10 7" fill="none" stroke="#4ea8ff" stroke-width="2"/>
+    <path d="M710 485H755" stroke="#4ea8ff" stroke-width="2"/><path d="M745 478l10 7-10 7" fill="none" stroke="#4ea8ff" stroke-width="2"/>
+  </g>
+</svg>
