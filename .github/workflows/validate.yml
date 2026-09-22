@@ -1,0 +1,55 @@
+name: Validate public skill
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate skill structure and fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f assignment-check/SKILL.md
+          test -f assignment-check/references/checking-protocol.md
+          test -f README.md
+          test -f LICENSE
+          test -f assets/hero.webp
+
+          grep -q '^name: assignment-check$' assignment-check/SKILL.md
+          grep -q '^description:' assignment-check/SKILL.md
+          grep -q '^license: MIT$' assignment-check/SKILL.md
+          grep -q '^compatibility:' assignment-check/SKILL.md
+          grep -q 'version: "1.0.2"' assignment-check/SKILL.md
+
+          fixture_count="$(find evals/fixtures -mindepth 1 -maxdepth 1 -type d -name 'T*' | wc -l | tr -d ' ')"
+          test "$fixture_count" = "20"
+
+          missing=0
+          while IFS= read -r dir; do
+            if [ ! -f "$dir/expected.md" ]; then
+              echo "Missing expected.md: $dir"
+              missing=1
+            fi
+          done < <(find evals/fixtures -mindepth 1 -maxdepth 1 -type d -name 'T*' | sort)
+          test "$missing" = "0"
+
+          test -f evals/fixtures/T14-unsafe-code/submission/cleanup.py.txt
+          test ! -e evals/fixtures/T14-unsafe-code/submission/cleanup.py
+          test ! -e assets/hero.svg
+
+          grep -q 'assets/hero.webp' README.md
+          ! grep -q 'houyuchan33-del' LICENSE
+
+          echo "Public skill validation passed."
