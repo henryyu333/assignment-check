@@ -1,4 +1,9 @@
 <p align="center">
+  <a href="./README.md">简体中文</a> ·
+  <a href="./README.en.md">English</a>
+</p>
+
+<p align="center">
   <img src="assets/hero.webp" width="100%" alt="Assignment Check — 提交前，按老师要求认真检查一遍作业">
 </p>
 
@@ -10,11 +15,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-v1%20ready-22c55e?style=flat-square" alt="v1 ready">
-  <img src="https://img.shields.io/badge/license-MIT-111827?style=flat-square" alt="MIT">
-  <img src="https://img.shields.io/badge/Agent%20Skill-SKILL.md-2563eb?style=flat-square" alt="Agent Skill">
-  <img src="https://img.shields.io/badge/public%20fixtures-T1%E2%80%93T20-06b6d4?style=flat-square" alt="Public fixtures T1-T20">
-  <img src="https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E4%B8%BA%E4%B8%BB-EN%20supported-7c3aed?style=flat-square" alt="Chinese first, English supported">
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-2563eb.svg" alt="License: MIT"></a>
+  <a href="./assignment-check/SKILL.md"><img src="https://img.shields.io/badge/Version-1.0.2-8b5cf6.svg" alt="Version: 1.0.2"></a>
+  <a href="./assignment-check/SKILL.md"><img src="https://img.shields.io/badge/Standard-Agent%20Skill-0ea5e9.svg" alt="Standard: Agent Skill"></a>
+  <a href="./assignment-check/SKILL.md"><img src="https://img.shields.io/badge/Method-Requirements%20%E2%86%92%20Evidence%20%E2%86%92%20Verify-2ea44f.svg" alt="Method: Requirements → Evidence → Verify"></a>
+  <a href="./evals/README.md"><img src="https://img.shields.io/badge/Evals-T1%E2%80%93T20-f59e0b.svg" alt="Evals: T1–T20"></a>
 </p>
 
 <p align="center">
