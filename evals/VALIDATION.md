@@ -4,18 +4,29 @@
 
 ## 结论
 
-**v1 已完成受控回归、真实 harness 触发测试和两类盲测。最终性能补丁未发现新的阻断性问题。**
+公开仓库当前包含 **T1–T20 共 20 个独立 fixture**。其中 T17 / T18 在公开审计后补成独立的输出形态 fixture。
 
-## 1 · 受控 fixture
+开发阶段曾完成受控回归、真实 Harness 触发测试与两类 blind test；但原始 harness transcript / logs 没有随公开仓库发布。因此下面的通过率与耗时是**开发阶段记录**，不是当前公开仓库可一键复现的 benchmark。
 
-T1–T20 覆盖：
+## 1 · 公开 fixture
+
+当前 `evals/fixtures/`：
+
+- T1–T16
+- T17 — 默认短报告形态
+- T18 — 用户明确要求完整报告
+- T19 — recheck ID 复用
+- T20 — MATCH UNCERTAIN
+
+合计：**20 个独立 fixture 目录**。
+
+它们覆盖：
 
 - Essay 漏要求
 - 数学答案正确但推导错误
 - 代码漏行为要求
 - 引用存在性 / 元数据 / 支持关系分层
-- 完整 rubric
-- 无 rubric
+- 完整 rubric / 无 rubric
 - 只有提交物
 - 无法验证的来源数据
 - brief / rubric 冲突
@@ -29,97 +40,81 @@ T1–T20 覆盖：
 - 默认短报告 / 完整报告
 - recheck ID 复用与 MATCH UNCERTAIN
 
-性能重构版完成了一次全量 T1–T20 回归：**20/20 的总体状态与预埋核心问题命中**。其中 T13 当时仍有默认短报告形态偏差，因此没有把那一次结果当成最终的引用分层稳定性证明。
+> T17 / T18 是在公开审计后补成的 standalone fixture。补齐后，当前 `main` **尚未重新执行一次完整的 20-case harness 回归**，因此这里不把“当前 main = 20/20”作为新的可复核结论。
 
-最终补丁把引用三层提升为运行时 invariant 后，T13 连续独立运行 **2/2 PASS**：
+## 2 · 历史开发阶段受控回归
 
-- 来源存在性：独立 verification status
-- 元数据：独立 verification status
-- 是否支持主张：独立 verification status
+性能重构阶段曾记录一次全量回归：**20/20 的总体状态与预埋核心问题命中**。
 
-两次都正确判为 `NEEDS REVISION`，并识别 Finn & Achilles 1999 的班级规模主张错配。
+该次运行中，T13 的默认短报告形态仍有偏差；后续补丁把引用三层提升为运行时 invariant 后，T13 又做了两次独立运行并记录为 **2/2 PASS**。
 
-## 2 · 真实 Harness 触发
+这些结果来自开发阶段 harness 记录。公开仓库保留 fixtures 与验收口径，但**不包含当时的完整 transcript / runner logs**，因此第三方目前可以审阅测试设计，不能仅凭仓库内容独立复核这些历史通过率。
 
-在真实 Agent Harness 中，以全量 Skill discovery、全新会话运行：
+## 3 · 历史真实 Harness 触发
 
-早期完整触发验收：
+开发阶段记录：
 
-- 正例：**4/4 自动触发**
-- 负例：**2/2 不误触发**
+- 早期完整触发验收：正例 **4/4**，负例 **2/2**
+- 性能重构后 smoke test：正例 **2/2**，负例 **2/2**
 
-性能重构后又做了触发 smoke test：
+触发证据当时基于实际 Skill 加载行为，而不是仅凭回答风格判断。原始事件流未随公开仓库发布。
 
-- 正例：**2/2**
-- 负例：**2/2**
+## 4 · 历史 blind test
 
-触发验收以实际 Skill 加载行为为准，不依赖回答风格猜测。
+### Blind A — Writing / Research
 
-## 3 · 真实感盲测
+开发阶段最终记录：
 
-### Blind A — 写作 / Research
-
-最终性能补丁后的独立运行：
-
-- **PASS**
+- PASS
 - runtime：约 **76 秒**
-- 外部来源核验目标：**3 个**
+- 外部来源核验目标：3 个
 - 总体：`NEEDS REVISION`
 
-关键问题保持命中：
-
-- MigrantVoice “70%” 统计来源质量问题，并识别链接 404；
-- De Brauw 年份 / 主张错配；
-- 无引用的 3,200 美元经验主张；
-- 外部事实均保持可追溯来源。
-
-最早同一类盲测约 596 秒；性能收敛后降到约 76 秒。该数字只代表本次测试环境，不是固定 SLA。
+记录的关键命中包括来源质量、年份 / 主张错配与无引用经验主张。
 
 ### Blind B — Code / Data
 
-性能重构验收运行：
+开发阶段记录：
 
-- **PASS**
+- PASS
 - runtime：约 **183 秒**
 - 总体：`NEEDS REVISION`
 
-命中：
+记录的关键命中包括空值处理、`dropped.log` 缺失、重算不一致、输出路径错误与 README 缺失。
 
-- 空值行处理问题；
-- `dropped.log` 缺失；
-- 汇总值重算不一致；
-- summary 输出路径错误；
-- README 缺失；
-- 同时保留对正确部分的肯定。
+> 以上耗时只代表当时测试环境，不是固定 SLA，也不是当前仓库可直接复现的 benchmark。
 
-## 4 · 安全与确定性
+## 5 · 安全与确定性
 
-验收中持续检查：
+公开规格要求：
 
-- 不把解析失败当成 `MISSING`；
-- 不在 brief / rubric 冲突时擅自选边；
-- 危险代码不安全执行；
-- 联网得到并用于 finding 的外部事实必须可追溯；
-- 不满足条件时不输出 unsupported numeric grade；
-- `READY TO SUBMIT` 不因为性能预算而放宽。
+- 不把解析失败当成 `MISSING`
+- 不在 brief / rubric 冲突时擅自选边
+- 危险代码在安全条件不足时不运行
+- 联网得到并用于 finding 的外部事实必须可追溯
+- 不满足条件时不输出 unsupported numeric grade
+- `READY TO SUBMIT` 不因为性能预算而放宽
 
-## 5 · 性能设计
+**边界：**这些是 Skill 对宿主 Agent 的行为约束。真正的沙箱、网络隔离、文件权限、进程限制和凭据保护由宿主环境提供；Assignment Check 本身不实现运行时沙箱。
 
-最终运行核心采用：
+## 6 · 性能设计
 
-1. **Pass 1：不联网的全要求覆盖扫描**
-2. **Pass 2：只对高价值问题做定向验证**
-3. **Fail fast：NEEDS REVISION + 3 个已验证 Top 问题后默认停止继续联网**
-4. **READY 候选仍从严验证**
-5. 结果、计数、文件证据在单次运行内复用，避免重复读取与重复计算
-6. 完整 protocol 按需加载，不再每次启动都强制读入
+运行核心采用：
 
-当前 `SKILL.md` 约 **12 KB** mandatory runtime instructions；完整 protocol 保留为按需规格文件。
+1. Pass 1：不联网的全要求覆盖扫描
+2. Pass 2：只对高价值问题做定向验证
+3. Fail fast：`NEEDS REVISION` + 3 个已验证 Top 问题后默认停止继续联网
+4. READY 候选仍从严验证
+5. 单次运行内复用结果、计数与文件证据
+6. 完整 protocol 按需加载
 
-## 6 · 解释边界
+当前 `SKILL.md` 约 12 KB；完整 protocol 保留为按需规格文件。
 
-- 受控 fixture 通过不代表真实作业不存在未知边界；
-- 盲测通过不代表所有学科都达到专家级验证深度；
-- 运行时间会随模型、网络、文件长度和外部来源数量显著变化；
-- `READY TO SUBMIT` 不是成绩保证；
-- 无法可靠读取或验证的内容应继续标为 `UNVERIFIED` / `NEEDS CLARIFICATION`。
+## 7 · 解释边界
+
+- fixture 通过不代表真实作业不存在未知边界
+- 历史 harness 记录不等于公开可复现 benchmark
+- blind test 通过不代表所有学科都达到专家级验证深度
+- 运行时间会随模型、网络、文件长度和外部来源数量显著变化
+- `READY TO SUBMIT` 不是成绩保证
+- 无法可靠读取或验证的内容应继续标为 `UNVERIFIED` / `NEEDS CLARIFICATION`

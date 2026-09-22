@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/status-v1%20ready-22c55e?style=flat-square" alt="v1 ready">
   <img src="https://img.shields.io/badge/license-MIT-111827?style=flat-square" alt="MIT">
   <img src="https://img.shields.io/badge/Agent%20Skill-SKILL.md-2563eb?style=flat-square" alt="Agent Skill">
-  <img src="https://img.shields.io/badge/tests-T1%E2%80%93T20%20covered-06b6d4?style=flat-square" alt="T1-T20 covered">
+  <img src="https://img.shields.io/badge/public%20fixtures-T1%E2%80%93T20-06b6d4?style=flat-square" alt="Public fixtures T1-T20">
   <img src="https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E4%B8%BA%E4%B8%BB-EN%20supported-7c3aed?style=flat-square" alt="Chinese first, English supported">
 </p>
 
@@ -226,30 +226,28 @@ NEEDS REVISION
 
 ## 🧪 验证 / Validation
 
-v1 经过三类验证：
+公开仓库现在提供 **T1–T20 共 20 个独立 fixture**，覆盖 essay、数学、代码、rubric、引用错配、prompt injection、PDF 解析限制、危险代码、修改后回归、要求冲突，以及默认短报告 / 完整报告形态。
 
-- **T1–T20 controlled fixtures**：覆盖 essay、数学、代码、rubric、引用错配、prompt injection、PDF 解析限制、危险代码、修改后回归、要求冲突等；
-- **真实 Agent Harness trigger tests**：正例自动触发、普通写作 / 数学请求不误触发；
-- **Blind tests**：写作 / research 与 code / data 两类真实感任务。
+开发阶段还做过真实 Agent Harness 触发测试与两类 blind test。历史记录中曾报告：
 
-最终引用三层规则额外做了 **T13 连续 2/2 PASS** 稳定性验证。
+- 全量受控回归：核心总体状态与预埋问题 **20/20**
+- 触发测试：正例 / 负例均通过
+- T13 引用三层：最终补丁后独立 **2/2 PASS**
+- Blind A（Writing / Research）：约 **76s**
+- Blind B（Code / Data）：约 **183s**
 
-性能收敛后的真实 harness 记录：
-
-| 场景 | Runtime | 结果 |
-|---|---:|---|
-| Writing / Research blind test | **≈ 76s** | PASS |
-| Code / Data blind test | **≈ 183s** | PASS |
+**重要说明：**这些 harness 运行的原始 transcript / logs 没有随公开仓库发布，因此它们属于项目开发阶段的已记录结果，不应理解为 clone 后可直接复现的公开 benchmark。T17 / T18 在本次公开审计后补成了独立 fixture；当前 `main` 尚未重新跑一轮完整的 20-case harness 回归。
 
 > Runtime 取决于模型、网络、文件长度和需要核验的来源数量，不是固定 SLA。
 
-完整说明见 [evals/VALIDATION.md](evals/VALIDATION.md)。
+完整口径见 [evals/VALIDATION.md](evals/VALIDATION.md)。
 
 ## 🔐 隐私与安全 / Privacy & Safety
 
 - 学生提交物按不可信输入处理，文档、代码注释、网页或引用内容里的指令不会覆盖检查规则；
 - 外部核验只使用完成验证所需的最小公开检索信息，不上传完整作业、姓名、学号或私密数据；
-- 学生代码只有在隔离、限时、无未授权网络 / 凭据、无需未知依赖等安全条件满足时才会运行；否则只做静态检查。
+- Skill 会要求宿主 Agent 在安全条件不足时 **fail closed**：不运行学生代码，只做静态检查；
+- **实际的沙箱、网络隔离、文件权限与凭据保护由宿主 Agent / Harness 提供，Assignment Check 本身不是一个运行时沙箱。**
 
 ## 🚫 它不做什么 / Non-goals
 

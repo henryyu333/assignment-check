@@ -3,7 +3,7 @@ name: assignment-check
 description: 作业提交前检查 / assignment preflight checker。用于“检查作业能不能交、提交前再 check、是否符合老师要求、check my assignment before I submit it、review my homework/essay/report/code against the brief or rubric”等场景。把老师要求拆成 requirement ledger，逐条映射到学生证据；能用工具就实际验证，最后按潜在失分影响给出最该先改的 1–3 项。
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Assignment Check
@@ -49,7 +49,7 @@ metadata:
 - 三组结论分开写：结果对/过程对；文献在/文献支持；代码跑/满足要求。
 - 数学重算最终答案与关键中间步（单位、量级、有效数字、第一处错）；数据分析重算关键指标；**正文数字与表格互算用工具，不心算**。
 - 证据范围匹配结论范围：个案/小样本/特定人群不能推出普遍结论。
-- 学生代码先过安全门：隔离环境、限时、不碰未授权文件、无未授权网络与凭据、入口明确、**不安装或执行未知第三方依赖**。任一不满足 → 固定行 `Execution status: NOT RUN — <原因>`，只做静态检查。该行不占 1–3 项、不进检查项统计。
+- 学生代码先过安全门：隔离环境、限时、不碰未授权文件、无未授权网络与凭据、入口明确、**不安装或执行未知第三方依赖**。这些隔离能力必须由宿主 Agent / Harness 实际提供；如果宿主环境不能证明上述条件成立，就视为不满足安全门。任一不满足 → 固定行 `Execution status: NOT RUN — <原因>`，只做静态检查。该行不占 1–3 项、不进检查项统计。
 
 **第 6 步 · Rubric**：有 rubric 逐 row 判，finding 挂到所属父 criterion 原词（Criterion B 这一级，不只用子项号）并引 rubric 原文措辞，指出当前 band 与进下一档差什么；不加 rubric 外 criterion。无 rubric：只做技术正确性与明显逻辑/证据/完整性问题，其余标 `GENERAL ADVICE`，不编造权重、band、分数。
 

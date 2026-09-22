@@ -29,7 +29,7 @@
 | T19 | 复查时位置移动但问题身份不变 |
 | T20 | 复查时新旧问题无法可靠对应 |
 
-每个 fixture 的 `expected.md` 记录该场景的验收口径。
+每个 fixture 的 `expected.md` 记录该场景的验收口径。当前公开树包含 T1–T20 共 20 个独立目录；T17 / T18 在公开审计后补成 standalone output-shape fixture。
 
 ## 单次运行
 
@@ -66,6 +66,6 @@ fixtures/T14-unsafe-code/submission/cleanup.py.txt
 
 ## 最终验证
 
-当前 v1 的汇总验收结果见 [VALIDATION.md](VALIDATION.md)。
+当前公开测试设计与历史开发阶段验收记录见 [VALIDATION.md](VALIDATION.md)。
 
-真实 harness 的 description 自动触发不由 fixture 测试覆盖；它已在真实 Agent Harness 中单独验收。
+注意：公开仓库保留 fixtures 与 expected 口径，但不包含历史 harness 的完整 transcript / runner logs；T17 / T18 补齐后，当前 `main` 尚未重新跑一次完整 20-case harness 回归。
