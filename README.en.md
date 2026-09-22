@@ -141,31 +141,40 @@ Ordinary requests such as “write my essay” or “explain this math problem�
 
 ## 📋 Default output
 
-By default, Assignment Check does not dump the entire Requirement Ledger.
+By default, Assignment Check does not dump internal Requirement IDs or engineering status codes at the student.
 
-It returns a short report first:
+It returns a student-friendly pre-submit report first:
 
 ```text
 Assignment Check
 
-NEEDS REVISION
+⚠️ Revise before submitting
 
-Top fixes:
-1. R4 — You described A and B, but did not actually compare them
-2. R7 — The citation exists, but does not support this statistical claim
-3. R2 — The code is missing the required error-handling branch
+What to fix first
 
-Checks: 7 met · 2 partial · 1 missing
-1 additional item could not be confirmed
+1. You have not actually completed the comparison
+The brief asks you to compare A and B, but the draft only describes them separately.
+→ Add a shared comparison dimension and compare them directly.
+
+2. One citation does not support the claim
+The source content does not support what this sentence says.
+→ Revise the claim or use a source that actually supports it.
+
+3. One explicit requirement is missing
+The rubric requires invalid-input handling, but the code currently skips it.
+→ Add the required handling.
+
+Overall check
+✓ Completed 7
+△ Partly completed 2
+✕ Missing 1
+? Could not confirm 1
+
+After revising, just say:
+“I updated it. Check it again.”
 ```
 
-You can then ask:
-
-```text
-Expand issue 2.
-```
-
-or:
+If you want Requirement IDs, evidence locations, verification depth, and the full ledger, ask:
 
 ```text
 Give me the full report.
@@ -259,17 +268,21 @@ In the same conversation, after revising the submission, say:
 I updated it. Check it again.
 ```
 
-Assignment Check tracks prior findings as:
+The default recheck looks like a progress update:
 
 ```text
-resolved
-partially resolved
-unresolved
-no longer applicable
-new
-regressed
-MATCH UNCERTAIN
+Recheck result
+
+✓ Previous: no direct A-vs-B comparison → resolved
+△ Previous: citation support problem → partly resolved
+✕ Previous: sample size missing → still unresolved
+
+New issue found: 1
+
+⚠️ Still revise before submitting
 ```
+
+Internally, Assignment Check still preserves finding identity. If it cannot reliably tell whether an old and new issue are the same issue, the default report explains that in plain language instead of exposing `MATCH UNCERTAIN`.
 
 It still performs a lightweight full-submission scan so that fixing one issue does not hide a newly introduced problem elsewhere.
 
