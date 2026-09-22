@@ -24,6 +24,7 @@ jobs:
           test -f assignment-check/SKILL.md
           test -f assignment-check/references/checking-protocol.md
           test -f README.md
+          test -f README.en.md
           test -f LICENSE
           test -f assets/hero.webp
 
@@ -50,6 +51,11 @@ jobs:
           test ! -e assets/hero.svg
 
           grep -q 'assets/hero.webp' README.md
+          grep -q 'README.en.md' README.md
+          grep -q 'README.md' README.en.md
+          grep -q 'License-MIT' README.md
+          grep -q 'Version-1.0.2' README.md
+          grep -q 'Evals-T1' README.md
           ! grep -q 'houyuchan33-del' LICENSE
 
           echo "Public skill validation passed."
