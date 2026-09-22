@@ -84,7 +84,7 @@ Top fix:
 如果本机有 Node.js / npm：
 
 ```bash
-npx skills add https://github.com/houyuchan33-del/assignment-check/tree/main/assignment-check
+npx skills add https://github.com/henryyu333/assignment-check/tree/main/assignment-check
 ```
 
 按照 CLI 提示选择你的 Agent 和安装范围即可。
@@ -92,7 +92,7 @@ npx skills add https://github.com/houyuchan33-del/assignment-check/tree/main/ass
 如果希望作为用户级 Skill 安装到支持的 Agent：
 
 ```bash
-npx skills add https://github.com/houyuchan33-del/assignment-check/tree/main/assignment-check -g
+npx skills add https://github.com/henryyu333/assignment-check/tree/main/assignment-check -g
 ```
 
 > Assignment Check 本身只是一个标准的 Skill 目录，不绑定某个具体 Agent。不同客户端的实际安装位置由安装器或对应客户端决定。
@@ -102,7 +102,7 @@ npx skills add https://github.com/houyuchan33-del/assignment-check/tree/main/ass
 如果你不想使用 Skills CLI，也可以：
 
 ```bash
-git clone https://github.com/houyuchan33-del/assignment-check.git
+git clone https://github.com/henryyu333/assignment-check.git
 ```
 
 然后把仓库里的整个：
