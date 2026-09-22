@@ -32,7 +32,8 @@ jobs:
           grep -q '^description:' assignment-check/SKILL.md
           grep -q '^license: MIT$' assignment-check/SKILL.md
           grep -q '^compatibility:' assignment-check/SKILL.md
-          grep -q 'version: "1.0.2"' assignment-check/SKILL.md
+          skill_version="$(sed -n 's/^  version: "\([^"]*\)"$/\1/p' assignment-check/SKILL.md | head -n 1)"
+          test -n "$skill_version"
 
           fixture_count="$(find evals/fixtures -mindepth 1 -maxdepth 1 -type d -name 'T*' | wc -l | tr -d ' ')"
           test "$fixture_count" = "20"
@@ -51,11 +52,27 @@ jobs:
           test ! -e assets/hero.svg
 
           grep -q 'assets/hero.webp' README.md
+          grep -q 'assets/hero.webp' README.en.md
           grep -q 'README.en.md' README.md
           grep -q 'README.md' README.en.md
           grep -q 'License-MIT' README.md
-          grep -q 'Version-1.0.2' README.md
+          grep -q "Version-${skill_version}-" README.md
+          grep -q "Version-${skill_version}-" README.en.md
           grep -q 'Evals-T1' README.md
-          ! grep -q 'houyuchan33-del' LICENSE
+
+          grep -q '`SUBMISSION INTEGRITY`' assignment-check/SKILL.md
+          grep -q '`GENERAL ADVICE`' assignment-check/SKILL.md
+          grep -q '`NEEDS REVISION`' assignment-check/SKILL.md
+          ! grep -Eq 'SUBMISSION_INTEGRITY|GENERAL_ADVICE|NEEDS_REVISION' assignment-check/SKILL.md
+
+          grep -q 'npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check' README.md
+          grep -q 'npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check' README.en.md
+
+          ! git grep -n 'houyuchan33-del' -- .
+          ! git grep -n '/Users/' -- .
+          ! git ls-files | grep -Eq '(^|/)\.DS_Store
+
+          echo "Public skill validation passed."
+
 
           echo "Public skill validation passed."
