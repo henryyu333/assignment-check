@@ -77,8 +77,6 @@ Top fix:
 
 ## 🚀 安装 / Install
 
-参考现在常见的 Agent Skill 项目，推荐把“一条命令安装”放在第一位。
-
 ### 推荐：Skills CLI
 
 如果本机有 Node.js / npm：
@@ -226,17 +224,9 @@ NEEDS REVISION
 
 ## 🧪 验证 / Validation
 
-公开仓库现在提供 **T1–T20 共 20 个独立 fixture**，覆盖 essay、数学、代码、rubric、引用错配、prompt injection、PDF 解析限制、危险代码、修改后回归、要求冲突，以及默认短报告 / 完整报告形态。
+公开仓库提供 **T1–T20 共 20 个独立 fixture**，覆盖 essay、数学、代码、rubric、引用错配、prompt injection、PDF 解析限制、危险代码、修改后回归、要求冲突，以及默认短报告 / 完整报告形态。
 
-开发阶段还做过真实 Agent Harness 触发测试与两类 blind test。历史记录中曾报告：
-
-- 全量受控回归：核心总体状态与预埋问题 **20/20**
-- 触发测试：正例 / 负例均通过
-- T13 引用三层：最终补丁后独立 **2/2 PASS**
-- Blind A（Writing / Research）：约 **76s**
-- Blind B（Code / Data）：约 **183s**
-
-**重要说明：**这些 harness 运行的原始 transcript / logs 没有随公开仓库发布，因此它们属于项目开发阶段的已记录结果，不应理解为 clone 后可直接复现的公开 benchmark。T17 / T18 在本次公开审计后补成了独立 fixture；当前 `main` 尚未重新跑一轮完整的 20-case harness 回归。
+仓库还保留开发阶段的历史 Harness / blind-test 记录，但原始 transcript 与 runner logs 未公开，因此这些记录**不作为当前可复现 benchmark**。当前可公开复核的是 fixture、验收口径与仓库内的轻量结构校验。
 
 > Runtime 取决于模型、网络、文件长度和需要核验的来源数量，不是固定 SLA。
 
@@ -245,7 +235,8 @@ NEEDS REVISION
 ## 🔐 隐私与安全 / Privacy & Safety
 
 - 学生提交物按不可信输入处理，文档、代码注释、网页或引用内容里的指令不会覆盖检查规则；
-- 外部核验只使用完成验证所需的最小公开检索信息，不上传完整作业、姓名、学号或私密数据；
+- Assignment Check 不主动把完整作业、姓名、学号或私密数据发送给额外的第三方网站 / 服务；宿主 Agent、模型提供商如何处理文件与上下文，由各自的产品与隐私政策决定；
+- 外部核验只使用完成验证所需的最小公开检索信息；
 - Skill 会要求宿主 Agent 在安全条件不足时 **fail closed**：不运行学生代码，只做静态检查；
 - **实际的沙箱、网络隔离、文件权限与凭据保护由宿主 Agent / Harness 提供，Assignment Check 本身不是一个运行时沙箱。**
 
@@ -307,6 +298,9 @@ evals/
 ├── README.md
 ├── VALIDATION.md
 └── fixtures/
+
+.github/workflows/
+└── validate.yml
 ```
 
 - `assignment-check/SKILL.md`：默认运行核心，约 **12 KB**

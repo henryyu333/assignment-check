@@ -6,7 +6,7 @@
 
 公开仓库当前包含 **T1–T20 共 20 个独立 fixture**。其中 T17 / T18 在公开审计后补成独立的输出形态 fixture。
 
-开发阶段曾完成受控回归、真实 Harness 触发测试与两类 blind test；但原始 harness transcript / logs 没有随公开仓库发布。因此下面的通过率与耗时是**开发阶段记录**，不是当前公开仓库可一键复现的 benchmark。
+公开仓库现在可直接复核的是 fixture、验收口径与结构校验。开发阶段曾完成受控回归、真实 Harness 触发测试与两类 blind test；但原始 harness transcript / logs 没有随公开仓库发布。因此下面的通过率与耗时是**开发阶段记录**，不是当前公开仓库可一键复现的 benchmark。
 
 ## 1 · 公开 fixture
 
@@ -40,7 +40,13 @@
 - 默认短报告 / 完整报告
 - recheck ID 复用与 MATCH UNCERTAIN
 
-> T17 / T18 是在公开审计后补成的 standalone fixture。补齐后，当前 `main` **尚未重新执行一次完整的 20-case harness 回归**，因此这里不把“当前 main = 20/20”作为新的可复核结论。
+> T17 / T18 是在公开审计后补成的 standalone fixture。补齐后，当前版本**尚未重新执行一次完整的 20-case harness 回归**，因此这里不把“当前版本 = 20/20”作为新的可复核结论。
+
+### 自动结构校验
+
+`.github/workflows/validate.yml` 会在 push / pull request 时检查：Skill 核心文件、frontmatter 关键字段、20 个 fixture 与各自 `expected.md`、T14 危险代码保持不可执行 `.txt` 形式、README 当前预览图路径，以及已知旧资产 / 旧用户名残留。
+
+这个 workflow 只验证**公开仓库结构与安全约束没有退化**，不声称代替真实 Agent Harness 的行为评测。
 
 ## 2 · 历史开发阶段受控回归
 
