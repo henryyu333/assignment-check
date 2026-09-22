@@ -63,19 +63,20 @@ Assignment Check 是一个面向学生的**提交前作业检查 Agent Skill**�
 
 两种能源都出现了，但没有在同一个维度里直接比较。
 
-Assignment Check 会判断：
+Assignment Check 会先给学生一个直接可读的结果：
 
 ```text
-R1 · 介绍 Solar energy                  MET
-R2 · 介绍 Wind energy                   MET
-R3 · 比较两者的 cost                     PARTIAL
-R4 · 比较两者的 reliability              PARTIAL
+⚠️ 建议修改后再提交
 
-Overall: NEEDS REVISION
+最应该先改
 
-Top fix:
-围绕 cost 和 reliability 两个共同维度，
-直接比较 Solar vs Wind 的差异，并说明这些差异意味着什么。
+1. 还没有真正完成“比较”
+老师要求从 cost 和 reliability 两个维度比较 Solar 和 Wind，
+但你现在只是分别介绍了两者。
+→ 用共同维度直接对照 Solar vs Wind，并说明差异意味着什么。
+
+整体检查
+△ 这两项比较要求目前只完成了一部分
 ```
 
 **重点：写到了 A 和 B，不等于真正完成了 compare。**
@@ -87,7 +88,7 @@ Top fix:
 如果本机有 Node.js / npm：
 
 ```bash
-npx skills add https://github.com/henryyu333/assignment-check/tree/main/assignment-check
+npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check
 ```
 
 按照 CLI 提示选择你的 Agent 和安装范围即可。
@@ -95,7 +96,7 @@ npx skills add https://github.com/henryyu333/assignment-check/tree/main/assignme
 如果希望作为用户级 Skill 安装到支持的 Agent：
 
 ```bash
-npx skills add https://github.com/henryyu333/assignment-check/tree/main/assignment-check -g
+npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check -g
 ```
 
 > Assignment Check 本身只是一个标准的 Skill 目录，不绑定某个具体 Agent。不同客户端的实际安装位置由安装器或对应客户端决定。
@@ -313,7 +314,7 @@ evals/
 └── validate.yml
 ```
 
-- `assignment-check/SKILL.md`：默认运行核心，约 **12 KB**
+- `assignment-check/SKILL.md`：默认运行核心
 - `checking-protocol.md`：完整规格，按需加载
 - `evals/`：测试与验证，不参与正常 Skill 运行
 

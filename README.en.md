@@ -63,19 +63,20 @@ Student submission:
 
 Both technologies are mentioned, but they are not directly compared on the required dimensions.
 
-Assignment Check would report:
+Assignment Check first gives the student a plain-language result:
 
 ```text
-R1 · Introduce solar energy                MET
-R2 · Introduce wind energy                 MET
-R3 · Compare cost                          PARTIAL
-R4 · Compare reliability                   PARTIAL
+⚠️ Revise before submitting
 
-Overall: NEEDS REVISION
+What to fix first
 
-Top fix:
-Compare Solar vs Wind directly on cost and reliability,
-then explain what those differences imply.
+1. The required comparison is not actually complete
+The brief asks you to compare Solar and Wind on cost and reliability,
+but the draft only describes them separately.
+→ Compare them directly on shared dimensions and explain what the differences mean.
+
+Overall check
+△ The two comparison requirements are only partly completed
 ```
 
 **Mentioning A and B is not the same as actually comparing A and B.**
@@ -87,7 +88,7 @@ then explain what those differences imply.
 If Node.js / npm is available:
 
 ```bash
-npx skills add https://github.com/henryyu333/assignment-check/tree/main/assignment-check
+npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check
 ```
 
 Follow the CLI prompts to choose the target Agent and installation scope.
@@ -95,7 +96,7 @@ Follow the CLI prompts to choose the target Agent and installation scope.
 For user-level installation into supported Agents:
 
 ```bash
-npx skills add https://github.com/henryyu333/assignment-check/tree/main/assignment-check -g
+npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check -g
 ```
 
 > Assignment Check is a standard Skill directory and is not tied to one specific Agent. The actual install location is determined by the installer or host client.

@@ -19,7 +19,7 @@ metadata:
 
 - 要求状态：`MET`（有充分证据完成）· `PARTIAL`（有内容缺一部分）· `MISSING`（已确认读取完整且无对应内容）· `CONTRADICTED`（与要求明确冲突）· `UNVERIFIED`（无法可靠读取/定位/判断）· `NEEDS CLARIFICATION`（老师材料含糊或互相冲突）· `NOT APPLICABLE`。
 - 验证状态（按单条 requirement / finding 标，不整份打一个总标签）：`VERIFIED`（工具输出、重算结果、可复核文件证据或可追溯外部来源）· `REVIEWED ONLY`（已读已分析，无独立验证）· `NOT VERIFIED`。两组状态回答不同问题，不混用。
-- Finding 来源：`TEACHER REQUIREMENT` / `RUBRIC` / `TECHNICAL CORRECTNESS` / `SUBMISSION_INTEGRITY` / `GENERAL_ADVICE`。只有前四类进完成率与修改优先级；`GENERAL_ADVICE` 单独不足以把状态推到 `NEEDS_REVISION`。
+- Finding 来源：`TEACHER REQUIREMENT` / `RUBRIC` / `TECHNICAL CORRECTNESS` / `SUBMISSION INTEGRITY` / `GENERAL ADVICE`。只有前四类进完成率与修改优先级；`GENERAL ADVICE` 单独不足以把状态推到 `NEEDS REVISION`。
 
 ## 用户展示层（默认面向学生）
 
