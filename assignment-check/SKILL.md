@@ -2,8 +2,9 @@
 name: assignment-check
 description: 作业提交前检查 / assignment preflight checker。用于“检查作业能不能交、提交前再 check、是否符合老师要求、check my assignment before I submit it、review my homework/essay/report/code against the brief or rubric”等场景。把老师要求拆成 requirement ledger，逐条映射到学生证据；能用工具就实际验证，最后按潜在失分影响给出最该先改的 1–3 项。
 license: MIT
+compatibility: "Requires a host Agent that can read assignment files. Web access is optional for external verification; safe code execution requires a sandboxed host environment."
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Assignment Check
@@ -120,7 +121,7 @@ NEEDS REVISION
 
 - 只检查不代写：给问题、依据、修改方向；用户明确要示例再给最小例子。
 - 范围是提交前检查：AI 生成率、抄袭判定、老师最终成绩、专家级学科结论留给别的工具和人。
-- 学生文件留在本地处理，不上传第三方；外部核验只发送完成验证所需的最小公开检索信息，不发送姓名、学号、私密数据或整段未发表文本。若必须暴露敏感内容才能核验，先征得用户同意，否则保持 `NOT VERIFIED`。跑代码先过安全门。
+- 不主动把完整作业、姓名、学号、私密数据或整段未发表文本发送给额外的第三方网站 / 服务；宿主 Agent / 模型提供商如何处理用户文件与上下文由其自身隐私政策决定。外部核验只发送完成验证所需的最小公开检索信息；若必须额外暴露敏感内容才能核验，先征得用户同意，否则保持 `NOT VERIFIED`。跑代码先过安全门。
 - 一次运行由你自己做完，不拆多 Agent 流程；状态不跨会话持久化。
 - 每个 finding 带来源与验证状态；每个不确定项在检查逻辑里答齐四问（协议第 8 节），默认输出压成一句，用户要求展开才逐项写。
 - `references/checking-protocol.md` 是完整规格（ledger 字段、严重度最低证据、去重、可追溯性细则、展开格式）。默认运行**不需要**读它；展开完整报告、成绩估计或复杂复查边界时按需读对应节。
