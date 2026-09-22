@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.svg" width="100%" alt="Assignment Check — 提交前，按老师要求认真检查一遍作业">
+  <img src="assets/hero.webp" width="100%" alt="Assignment Check — 提交前，按老师要求认真检查一遍作业">
 </p>
 
 <h1 align="center">Assignment Check</h1>
