@@ -77,8 +77,6 @@ Top fix:
 
 ## 🚀 安装 / Install
 
-参考现在常见的 Agent Skill 项目，推荐把“一条命令安装”放在第一位。
-
 ### 推荐：Skills CLI
 
 如果本机有 Node.js / npm：
@@ -225,8 +223,6 @@ NEEDS REVISION
 “搜索没找到”也不会被直接写成“来源不存在”。
 
 ## 🧪 验证 / Validation
-
-公开仓库现在提供 **T1–T20 共 20 个独立 fixture**，覆盖 essay、数学、代码、rubric、引用错配、prompt injection、PDF 解析限制、危险代码、修改后回归、要求冲突，以及默认短报告 / 完整报告形态。
 
 公开仓库提供 **T1–T20 共 20 个独立 fixture**，覆盖 essay、数学、代码、rubric、引用错配、prompt injection、PDF 解析限制、危险代码、修改后回归、要求冲突，以及默认短报告 / 完整报告形态。
 
