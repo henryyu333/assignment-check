@@ -90,7 +90,20 @@
 
 > 以上耗时只代表当时测试环境，不是固定 SLA，也不是当前仓库可直接复现的 benchmark。
 
-## 5 · 安全与确定性
+## 5 · 学生交付层
+
+v1.0.2 的默认交付层继续保留原有严格内部状态，但面向普通学生时隐藏大部分工程术语：
+
+- `NEEDS REVISION` → “建议修改后再提交”
+- `READY TO SUBMIT` → “可以提交”
+- `CHECK INCOMPLETE` → “还不能确认是否可以提交”
+- requirement / finding ID 默认隐藏，完整报告再显示
+- `VERIFIED / REVIEWED ONLY / NOT VERIFIED` 默认展示为“已核实 / 已检查，未独立核实 / 未核实”
+- `MATCH UNCERTAIN` 默认展示为“暂时无法确认是不是同一个问题”
+
+这层只改变用户可见表达，不改变 requirement ledger、总体状态闸门、引用三层、recheck identity 或验证规则。
+
+## 6 · 安全与确定性
 
 公开规格要求：
 
@@ -103,7 +116,7 @@
 
 **边界：**这些是 Skill 对宿主 Agent 的行为约束。真正的沙箱、网络隔离、文件权限、进程限制和凭据保护由宿主环境提供；Assignment Check 本身不实现运行时沙箱。
 
-## 6 · 性能设计
+## 7 · 性能设计
 
 运行核心采用：
 
@@ -116,7 +129,7 @@
 
 当前 `SKILL.md` 约 12 KB；完整 protocol 保留为按需规格文件。
 
-## 7 · 解释边界
+## 8 · 解释边界
 
 - fixture 通过不代表真实作业不存在未知边界
 - 历史 harness 记录不等于公开可复现 benchmark
