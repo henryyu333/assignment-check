@@ -16,7 +16,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Validate skill structure and fixtures
+      - name: Validate skill structure and public release hygiene
         shell: bash
         run: |
           set -euo pipefail
@@ -32,6 +32,7 @@ jobs:
           grep -q '^description:' assignment-check/SKILL.md
           grep -q '^license: MIT$' assignment-check/SKILL.md
           grep -q '^compatibility:' assignment-check/SKILL.md
+
           skill_version="$(sed -n 's/^  version: "\([^"]*\)"$/\1/p' assignment-check/SKILL.md | head -n 1)"
           test -n "$skill_version"
 
@@ -63,16 +64,28 @@ jobs:
           grep -q '`SUBMISSION INTEGRITY`' assignment-check/SKILL.md
           grep -q '`GENERAL ADVICE`' assignment-check/SKILL.md
           grep -q '`NEEDS REVISION`' assignment-check/SKILL.md
-          ! grep -Eq 'SUBMISSION_INTEGRITY|GENERAL_ADVICE|NEEDS_REVISION' assignment-check/SKILL.md
+          if grep -Eq 'SUBMISSION_INTEGRITY|GENERAL_ADVICE|NEEDS_REVISION' assignment-check/SKILL.md; then
+            echo "Found non-canonical internal status/source token."
+            exit 1
+          fi
 
-          grep -q 'npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check' README.md
-          grep -q 'npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check' README.en.md
+          install_cmd='npx skills add https://github.com/henryyu333/assignment-check --skill assignment-check'
+          grep -Fq "$install_cmd" README.md
+          grep -Fq "$install_cmd" README.en.md
 
-          ! git grep -n 'houyuchan33-del' -- .
-          ! git grep -n '/Users/' -- .
-          ! git ls-files | grep -Eq '(^|/)\.DS_Store
+          if git grep -n -e 'houyuchan33-del' -- ':!'.github/workflows/validate.yml; then
+            echo "Found stale former username."
+            exit 1
+          fi
 
-          echo "Public skill validation passed."
+          if git grep -n -e '/Users/' -- ':!'.github/workflows/validate.yml; then
+            echo "Found local absolute path."
+            exit 1
+          fi
 
+          if git ls-files | grep -Eq '(^|/)\.DS_Store$'; then
+            echo "Found tracked .DS_Store."
+            exit 1
+          fi
 
           echo "Public skill validation passed."
