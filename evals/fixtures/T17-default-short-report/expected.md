@@ -24,24 +24,32 @@
 
 最终回答应保持短报告：
 
-1. 标题 / 总体状态
+1. 标题 / 学生友好的总体结论（应表达“建议修改后再提交”）
 2. 最多 1–3 条“最应该先改”
 3. 检查项统计
 4. 如有不确定项才给一句摘要；本 fixture 没有必须出现的不确定项
 
-允许用自然语言压缩，但**不得默认输出完整 Requirement Ledger、逐条 Markdown 表、完整 finding 六要素、长篇优点列表或完整 protocol 解释**。
+允许用自然语言压缩，但**不得默认输出完整 Requirement Ledger、逐条 Markdown 表、完整 finding 六要素、长篇优点列表或完整 protocol 解释**。默认也不得把 `R4b`、`MISSING`、`NEEDS REVISION` 等工程状态当主展示；这些只在完整报告里出现。
 
 建议形态类似：
 
 ```text
 Assignment Check
 
-NEEDS REVISION
+⚠️ 建议修改后再提交
 
-最应该先改：
-1. 老师要求比较 cost 和 implementation time；你只比较了 cost，implementation time 还没比较。
+最应该先改
 
-检查项：5 完成 · 1 缺失
+1. 还没有完成 implementation time 的比较
+老师要求同时比较 cost 和 implementation time；你现在只比较了 cost。
+→ 补上两种方案部署 / 上线时间的直接对照。
+
+整体检查
+✓ 已完成 5
+✕ 缺失 1
+
+改完后直接告诉我：
+“我改好了，再检查一次。”
 ```
 
 ## 不得声称

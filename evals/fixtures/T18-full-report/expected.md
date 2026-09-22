@@ -18,7 +18,7 @@
 
 ## 完整报告必须展示
 
-- 总体状态 `NEEDS REVISION`
+- 先给学生友好的总体结论“建议修改后再提交”，并可在完整报告中同时标注内部状态 `NEEDS REVISION`
 - 完整 Requirement Ledger：R1–R5（其中 compare 拆为 R4a / R4b）
 - 每条 requirement 的状态与证据位置
 - 对 R4b 的完整 finding：位置、问题、证据、为什么重要、受影响要求、验证状态、修改方向
@@ -36,5 +36,5 @@
 
 - 不得给数字成绩或成绩区间
 - 不得判 `READY TO SUBMIT`
-- 不得只输出默认四块然后停止
+- 不得只输出默认学生短报告然后停止
 - 不得虚构老师没有给出的 implementation-time 阈值
